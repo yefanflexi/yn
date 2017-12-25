@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.szc.enterprise.web.dao.dao.CustomSqlMapper" >
+  
+  <resultMap id="BaseResultMap_rQuality" type="com.szc.enterprise.web.model.ReportQuality" >
+    <result column="TimeStamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="Platform" property="platform" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="Provider" property="provider" jdbcType="VARCHAR" />
+    <result column="AuthRspSuccRate" property="authrspsuccrate" jdbcType="DOUBLE" />
+    <result column="EpgRspAvgSec" property="epgrspavgsec" jdbcType="DOUBLE" />
+    <result column="EpgRspTimelyRate" property="epgrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="TvFreezeUserRate" property="tvfreezeuserrate" jdbcType="DOUBLE" />
+    <result column="LiveUserFreezeSecRate" property="liveuserfreezesecrate" jdbcType="DOUBLE" />
+    <result column="VodUserFreezeSecRate" property="voduserfreezesecrate" jdbcType="DOUBLE" />
+    <result column="MdLostUserRate" property="mdlostuserrate" jdbcType="DOUBLE" />
+    <result column="ChannelChgSecSuccRate" property="channelchgsecsuccrate" jdbcType="DOUBLE" />
+    <result column="ChannelChgAvgSec" property="channelchgavgsec" jdbcType="DOUBLE" />
+    <result column="VodRspTimelyRate" property="vodrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="BackRspTimelyRate" property="backrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="VodRspAvgSec" property="vodrspavgsec" jdbcType="DOUBLE" />
+    <result column="BackRspAvgSec" property="backrspavgsec" jdbcType="DOUBLE" />
+    <result column="VodFviewLatencTime" property="vodfviewlatenctime" jdbcType="DOUBLE" />
+    <result column="BackFviewLatencTime" property="backfviewlatenctime" jdbcType="DOUBLE" />
+    <result column="TvLiveCutRate" property="tvlivecutrate" jdbcType="DOUBLE" />
+    <result column="LiveCutSecCount" property="livecutseccount" jdbcType="BIGINT" />
+    <result column="FreezeCount" property="freezecount" jdbcType="BIGINT" />
+    <result column="VodFreezeCount" property="vodfreezecount" jdbcType="BIGINT" />
+    <result column="BackFreezeCount" property="backfreezecount" jdbcType="BIGINT" />
+    <result column="LiveFreezeCount" property="livefreezecount" jdbcType="BIGINT" />
+    <result column="VodFreezeSec" property="vodfreezesec" jdbcType="DOUBLE" />
+    <result column="BackFreezeSec" property="backfreezesec" jdbcType="DOUBLE" />
+    <result column="LiveFreezeSec" property="livefreezesec" jdbcType="DOUBLE" />
+    <result column="NetwokLostRate" property="netwoklostrate" jdbcType="DOUBLE" />
+    <result column="NetworkAvgSec" property="networkavgsec" jdbcType="DOUBLE" />
+    <result column="TotalUserMosCount" property="totalusermoscount" jdbcType="BIGINT" />
+    <result column="VodUserMosCount" property="vodusermoscount" jdbcType="BIGINT" />
+    <result column="BackUserMosCount" property="backusermoscount" jdbcType="BIGINT" />
+    <result column="LiveUserMosCount" property="liveusermoscount" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause_rQuality" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+   <sql id="Base_Column_List_rQuality" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    Platform, 
+    Location, 
+    Provider, 
+    avg(AuthRspSuccRate) AuthRspSuccRate, 
+    avg(EpgRspAvgSec) EpgRspAvgSec, 
+    avg(EpgRspTimelyRate) EpgRspTimelyRate, 
+    avg(TvFreezeUserRate) TvFreezeUserRate, 
+    avg(LiveUserFreezeSecRate) LiveUserFreezeSecRate,
+    avg(VodUserFreezeSecRate) VodUserFreezeSecRate, 
+    avg(MdLostUserRate) MdLostUserRate, 
+    avg(ChannelChgSecSuccRate) ChannelChgSecSuccRate, 
+    avg(ChannelChgAvgSec) ChannelChgAvgSec, 
+    avg(VodRspTimelyRate) VodRspTimelyRate, 
+    avg(BackRspTimelyRate) BackRspTimelyRate, 
+    avg(VodRspAvgSec) VodRspAvgSec, 
+    avg(BackRspAvgSec) BackRspAvgSec, 
+    avg(VodFviewLatencTime) VodFviewLatencTime, 
+    avg(BackFviewLatencTime) BackFviewLatencTime, 
+    avg(TvLiveCutRate) TvLiveCutRate, 
+    avg(LiveCutSecCount) LiveCutSecCount, 
+    avg(FreezeCount) FreezeCount, 
+    avg(VodFreezeCount) VodFreezeCount, 
+    avg(BackFreezeCount) BackFreezeCount, 
+    avg(LiveFreezeCount) LiveFreezeCount, 
+    avg(VodFreezeSec) VodFreezeSec, 
+    avg(BackFreezeSec) BackFreezeSec, 
+    avg(LiveFreezeSec) LiveFreezeSec, 
+    avg(NetwokLostRate) NetwokLostRate, 
+    avg(NetworkAvgSec) NetworkAvgSec, 
+    avg(TotalUserMosCount) TotalUserMosCount, 
+    avg(VodUserMosCount) VodUserMosCount, 
+    avg(BackUserMosCount) BackUserMosCount, 
+    avg(LiveUserMosCount) LiveUserMosCount
+  </sql>
+  
+  <select id="selectByExampleDay_rQuality" resultMap="BaseResultMap_rQuality" parameterType="com.szc.enterprise.web.model.ReportQualityExample" >
+  	select 
+  	    <include refid="Base_Column_List_rQuality" />
+    	from report_quality
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rQuality" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' )
+        ORDER BY `TimeStamp` DESC
+  </select>
+  
+  <!-- 分组 -->
+  <sql id="Base_Column_List_rQuality_Group" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    <if test="platform_all == 1" >
+      platform,
+    </if>
+    <if test="platform_all != 1" >
+      <if test="platform != null and platform != ''" >
+      	platform,
+      </if>
+    </if>
+    <if test="location_all == 1" >
+      location,
+    </if>
+    <if test="location_all != 1" >
+      <if test="location != null and location != ''" >
+      	location,
+      </if>
+    </if>
+    <if test="provider_all == 1" >
+      provider,
+    </if>
+    <if test="provider_all != 1" >
+      <if test="provider != null and provider != ''" >
+      	provider,
+      </if>
+    </if> 
+    avg(AuthRspSuccRate) AuthRspSuccRate, 
+    avg(EpgRspAvgSec) EpgRspAvgSec, 
+    avg(EpgRspTimelyRate) EpgRspTimelyRate, 
+    avg(TvFreezeUserRate) TvFreezeUserRate, 
+    avg(LiveUserFreezeSecRate) LiveUserFreezeSecRate,
+    avg(VodUserFreezeSecRate) VodUserFreezeSecRate, 
+    avg(MdLostUserRate) MdLostUserRate, 
+    avg(ChannelChgSecSuccRate) ChannelChgSecSuccRate, 
+    avg(ChannelChgAvgSec) ChannelChgAvgSec, 
+    avg(VodRspTimelyRate) VodRspTimelyRate, 
+    avg(BackRspTimelyRate) BackRspTimelyRate, 
+    avg(VodRspAvgSec) VodRspAvgSec, 
+    avg(BackRspAvgSec) BackRspAvgSec, 
+    avg(VodFviewLatencTime) VodFviewLatencTime, 
+    avg(BackFviewLatencTime) BackFviewLatencTime, 
+    avg(TvLiveCutRate) TvLiveCutRate, 
+    sum(LiveCutSecCount) LiveCutSecCount, 
+    sum(FreezeCount) FreezeCount, 
+    sum(VodFreezeCount) VodFreezeCount, 
+    sum(BackFreezeCount) BackFreezeCount, 
+    sum(LiveFreezeCount) LiveFreezeCount, 
+    sum(VodFreezeSec) VodFreezeSec, 
+    sum(BackFreezeSec) BackFreezeSec, 
+    sum(LiveFreezeSec) LiveFreezeSec, 
+    avg(NetwokLostRate) NetwokLostRate, 
+    avg(NetworkAvgSec) NetworkAvgSec, 
+    avg(TotalUserMosCount) TotalUserMosCount, 
+    avg(VodUserMosCount) VodUserMosCount, 
+    avg(BackUserMosCount) BackUserMosCount, 
+    avg(LiveUserMosCount) LiveUserMosCount
+  </sql>
+  
+  <select id="selectByExampleDay_rQuality_Group" resultMap="BaseResultMap_rQuality" parameterType="com.szc.enterprise.web.model.ReportQualityExample" >
+  	select 
+  	    <include refid="Base_Column_List_rQuality_Group" />
+    	from report_quality
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rQuality" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' )
+        <if test="platform_all == 1" >
+	      ,Platform
+	    </if>
+	    <if test="platform_all != 1" >
+	      <if test="platform != null and platform != ''" >
+	      	,platform
+	      </if>
+	    </if>
+	    <if test="location_all == 1" >
+	      ,location
+	    </if>
+	    <if test="location_all != 1" >
+	      <if test="location != null and location != ''" >
+	      	,location
+	      </if>
+	    </if>
+	    <if test="provider_all == 1" >
+	      ,provider
+	    </if>
+	    <if test="provider_all != 1" >
+	      <if test="provider != null and provider != ''" >
+	      	,provider
+	      </if>
+	    </if>
+	    ORDER BY `TimeStamp` DESC
+  </select>
+  
+  <!-- 分组new begin -->
+  <resultMap id="BaseResultMap_rQuality_new" type="com.szc.enterprise.web.model.ReportQualityNew" >
+    <result column="TimeStamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="Platform" property="platform" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="Provider" property="provider" jdbcType="VARCHAR" />
+    <result column="AuthRspSuccRate" property="authrspsuccrate" jdbcType="DOUBLE" />
+    <result column="EpgRspAvgSec" property="epgrspavgsec" jdbcType="DOUBLE" />
+    <result column="EpgRspTimelyCount" property="epgrsptimelycount" jdbcType="DOUBLE" />
+    <result column="EpgRspTimelyRate" property="epgrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="TvFreezeUserCount" property="tvfreezeusercount" jdbcType="DOUBLE" />
+    <result column="TvFreezeUserRate" property="tvfreezeuserrate" jdbcType="DOUBLE" />
+    <result column="LiveUserFreezeSecRate" property="liveuserfreezesecrate" jdbcType="DOUBLE" />
+    <result column="VodUserFreezeSecRate" property="voduserfreezesecrate" jdbcType="DOUBLE" />
+    <result column="MdLostUserRate" property="mdlostuserrate" jdbcType="DOUBLE" />
+    <result column="ChannelChgSecSuccRate" property="channelchgsecsuccrate" jdbcType="DOUBLE" />
+    <result column="ChannelChgAvgSec" property="channelchgavgsec" jdbcType="DOUBLE" />
+    <result column="VodRspTimelyCount" property="vodrsptimelycount" jdbcType="DOUBLE" />
+    <result column="VodRspTimelyRate" property="vodrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="BackRspTimelyCount" property="backrsptimelycount" jdbcType="DOUBLE" />
+    <result column="BackRspTimelyRate" property="backrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="VodRspAvgSec" property="vodrspavgsec" jdbcType="DOUBLE" />
+    <result column="BackRspAvgSec" property="backrspavgsec" jdbcType="DOUBLE" />
+    <result column="VodFviewLatencTime" property="vodfviewlatenctime" jdbcType="DOUBLE" />
+    <result column="BackFviewLatencTime" property="backfviewlatenctime" jdbcType="DOUBLE" />
+    <result column="TvLiveCutRate" property="tvlivecutrate" jdbcType="DOUBLE" />
+    <result column="LiveCutSecCount" property="livecutseccount" jdbcType="BIGINT" />
+    <result column="FreezeCount" property="freezecount" jdbcType="BIGINT" />
+    <result column="VodFreezeCount" property="vodfreezecount" jdbcType="BIGINT" />
+    <result column="BackFreezeCount" property="backfreezecount" jdbcType="BIGINT" />
+    <result column="LiveFreezeCount" property="livefreezecount" jdbcType="BIGINT" />
+    <result column="VodFreezeSec" property="vodfreezesec" jdbcType="DOUBLE" />
+    <result column="BackFreezeSec" property="backfreezesec" jdbcType="DOUBLE" />
+    <result column="LiveFreezeSec" property="livefreezesec" jdbcType="DOUBLE" />
+    <result column="NetwokLostRate" property="netwoklostrate" jdbcType="DOUBLE" />
+    <result column="NetworkAvgSec" property="networkavgsec" jdbcType="DOUBLE" />
+    <result column="TotalUserMosCount" property="totalusermoscount" jdbcType="DOUBLE" />
+    <result column="VodUserMosCount" property="vodusermoscount" jdbcType="DOUBLE" />
+    <result column="BackUserMosCount" property="backusermoscount" jdbcType="DOUBLE" />
+    <result column="LiveUserMosCount" property="liveusermoscount" jdbcType="DOUBLE" />
+    <result column="TotalUserCount" property="totalusercount" jdbcType="DOUBLE" />
+    <result column="LiveUserCount" property="liveusercount" jdbcType="DOUBLE" />
+    <result column="VodUserCount" property="vodusercount" jdbcType="DOUBLE" />
+    <result column="BackUserCount" property="backusercount" jdbcType="DOUBLE" />
+    <result column="LiveSec" property="livesec" jdbcType="DOUBLE" />
+    <result column="VodSec" property="vodsec" jdbcType="DOUBLE" />
+    <result column="BackSec" property="backsec" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause_rQuality_new" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Base_Column_List_rQuality_Group_new" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    <if test="platform_all == 1" >
+      platform,
+    </if>
+    <if test="platform_all != 1" >
+      <if test="platform != null and platform != ''" >
+      	platform,
+      </if>
+    </if>
+    <if test="location_all == 1" >
+      location,
+    </if>
+    <if test="location_all != 1" >
+      <if test="location != null and location != ''" >
+      	location,
+      </if>
+    </if>
+    <if test="provider_all == 1" >
+      provider,
+    </if>
+    <if test="provider_all != 1" >
+      <if test="provider != null and provider != ''" >
+      	provider,
+      </if>
+    </if> 
+    truncate(avg(AuthRspSuccRate), 4) AuthRspSuccRate, 
+    avg(EpgRspAvgSec) EpgRspAvgSec, 
+    sum(EpgRspTimelyCount)/sum(TotalUserCount) EpgRspTimelyRate, 
+    sum(TvFreezeUserCount)/sum(TotalUserCount) TvFreezeUserRate, 
+    sum(LiveFreezeSec)/sum(LiveSec) LiveUserFreezeSecRate,
+    sum(VodFreezeSec)/sum(VodSec) VodUserFreezeSecRate, 
+    avg(MdLostUserRate) MdLostUserRate, 
+    avg(ChannelChgSecSuccRate) ChannelChgSecSuccRate, 
+    avg(ChannelChgAvgSec) ChannelChgAvgSec, 
+    sum(VodRspTimelyCount)/sum(VodUserCount) VodRspTimelyRate, 
+    sum(BackRspTimelyCount)/sum(BackUserCount) BackRspTimelyRate, 
+    avg(VodRspAvgSec) VodRspAvgSec, 
+    avg(BackRspAvgSec) BackRspAvgSec, 
+    avg(VodFviewLatencTime) VodFviewLatencTime, 
+    avg(BackFviewLatencTime) BackFviewLatencTime, 
+    avg(TvLiveCutRate) TvLiveCutRate, 
+    sum(LiveCutSecCount) LiveCutSecCount, 
+    sum(FreezeCount) FreezeCount, 
+    sum(VodFreezeCount) VodFreezeCount, 
+    sum(BackFreezeCount) BackFreezeCount, 
+    sum(LiveFreezeCount) LiveFreezeCount, 
+    sum(VodFreezeSec) VodFreezeSec, 
+    sum(BackFreezeSec) BackFreezeSec, 
+    sum(LiveFreezeSec) LiveFreezeSec, 
+    avg(NetwokLostRate) NetwokLostRate, 
+    avg(NetworkAvgSec) NetworkAvgSec, 
+    avg(TotalUserMosCount) TotalUserMosCount, 
+    avg(VodUserMosCount) VodUserMosCount, 
+    avg(BackUserMosCount) BackUserMosCount, 
+    avg(LiveUserMosCount) LiveUserMosCount
+  </sql>
+  
+  <select id="selectByExampleDay_rQuality_Group_new" resultMap="BaseResultMap_rQuality_new" parameterType="com.szc.enterprise.web.model.ReportQualityNewExample" >
+  	select 
+  	    <include refid="Base_Column_List_rQuality_Group_new" />
+    	from report_quality_new
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rQuality_new" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' )
+        <if test="platform_all == 1" >
+	      ,Platform
+	    </if>
+	    <if test="platform_all != 1" >
+	      <if test="platform != null and platform != ''" >
+	      	,platform
+	      </if>
+	    </if>
+	    <if test="location_all == 1" >
+	      ,location
+	    </if>
+	    <if test="location_all != 1" >
+	      <if test="location != null and location != ''" >
+	      	,location
+	      </if>
+	    </if>
+	    <if test="provider_all == 1" >
+	      ,provider
+	    </if>
+	    <if test="provider_all != 1" >
+	      <if test="provider != null and provider != ''" >
+	      	,provider
+	      </if>
+	    </if>
+	    ORDER BY `TimeStamp` DESC
+  </select>
+  <!--  END -->
+  
+<!--   用户行为报表 -->
+  <resultMap id="BaseResultMap_rUserbehavior" type="com.szc.enterprise.web.model.ReportUserbehavior" >
+   	<result column="TimeStamp" jdbcType="TIMESTAMP" property="timestamp" />
+    <result column="Platform" jdbcType="VARCHAR" property="platform" />
+    <result column="Location" jdbcType="VARCHAR" property="location" />
+    <result column="Provider" jdbcType="VARCHAR" property="provider" />
+    <result column="LiveUserCount" jdbcType="BIGINT" property="liveusercount" />
+    <result column="LiveUserRate" jdbcType="DOUBLE" property="liveuserrate" />
+    <result column="VodUserCount" jdbcType="BIGINT" property="vodusercount" />
+    <result column="VodUserRate" jdbcType="DOUBLE" property="voduserrate" />
+    <result column="BackUserCount" jdbcType="BIGINT" property="backusercount" />
+    <result column="BackUserRate" jdbcType="DOUBLE" property="backuserrate" />
+    <result column="LiveViewSec" jdbcType="DOUBLE" property="liveviewsec" />
+    <result column="VodViewSec" jdbcType="DOUBLE" property="vodviewsec" />
+    <result column="TotalViewSec" jdbcType="DOUBLE" property="totalviewsec" />
+    <result column="AvgViewSec" jdbcType="DOUBLE" property="avgviewsec" />
+    <result column="UserOnlineSec" jdbcType="DOUBLE" property="useronlinesec" /> 
+  </resultMap>
+  
+  <sql id="Example_Where_Clause_rUserbehavior" >
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+   <sql id="Base_Column_List_rUserbehavior" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    Platform, 
+    Location, 
+    Provider, 
+    avg(LiveUserCount) LiveUserCount, 
+    avg(LiveUserRate) LiveUserRate,
+    avg(VodUserCount) VodUserCount,
+    avg(VodUserRate) VodUserRate,
+    avg(BackUserCount) BackUserCount,
+    avg(BackUserRate) BackUserRate,
+    avg(LiveViewSec) LiveViewSec,
+    avg(VodViewSec) VodViewSec,
+    avg(TotalViewSec) TotalViewSec,
+    avg(AvgViewSec) AvgViewSec,
+    avg(UserOnlineSec) UserOnlineSec
+  </sql>
+  
+  <select id="selectByExampleDay_rUserbehavior" resultMap="BaseResultMap_rUserbehavior" parameterType="com.szc.enterprise.web.model.ReportUserbehaviorExample" >
+  	select 
+  	    <include refid="Base_Column_List_rUserbehavior" />
+    	from report_userbehavior
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rUserbehavior" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' )
+        ORDER BY `TimeStamp` DESC
+  </select>
+  
+  <!-- 分组 -->
+  <sql id="Base_Column_List_rUserbehavior_Group" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    <if test="platform_all == 1" >
+      platform,
+    </if>
+    <if test="platform_all != 1" >
+      <if test="platform != null and platform != ''" >
+      	platform,
+      </if>
+    </if>
+    <if test="location_all == 1" >
+      location,
+    </if>
+    <if test="location_all != 1" >
+      <if test="location != null and location != ''" >
+      	location,
+      </if>
+    </if>
+    <if test="provider_all == 1" >
+      provider,
+    </if>
+    <if test="provider_all != 1" >
+      <if test="provider != null and provider != ''" >
+      	provider,
+      </if>
+    </if> 
+    sum(LiveUserCount) LiveUserCount, 
+    sum(LiveViewSec)/sum(TotalViewSec) LiveUserRate,
+    sum(VodUserCount) VodUserCount,
+    sum(VodViewSec)/sum(TotalViewSec) VodUserRate,
+    sum(BackUserCount) BackUserCount,
+    sum(BackViewSec)/sum(TotalViewSec) BackUserRate,
+    sum(LiveViewSec) LiveViewSec,
+    sum(VodViewSec) VodViewSec,
+    sum(TotalViewSec) TotalViewSec,
+    avg(AvgViewSec) AvgViewSec,
+    sum(UserOnlineSec) UserOnlineSec
+  </sql>
+  
+  <select id="selectByExampleDay_rUserbehavior_Group" resultMap="BaseResultMap_rUserbehavior" parameterType="com.szc.enterprise.web.model.ReportUserbehaviorExample" >
+  	select 
+  	    <include refid="Base_Column_List_rUserbehavior_Group" />
+    	from report_userbehavior
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rUserbehavior" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' )
+	    <if test="platform_all == 1" >
+	      ,Platform
+	    </if>
+	    <if test="platform_all != 1" >
+	      <if test="platform != null and platform != ''" >
+	      	,platform
+	      </if>
+	    </if>
+	    <if test="location_all == 1" >
+	      ,location
+	    </if>
+	    <if test="location_all != 1" >
+	      <if test="location != null and location != ''" >
+	      	,location
+	      </if>
+	    </if>
+	    <if test="provider_all == 1" >
+	      ,provider
+	    </if>
+	    <if test="provider_all != 1" >
+	      <if test="provider != null and provider != ''" >
+	      	,provider
+	      </if>
+	    </if>
+        ORDER BY `TimeStamp` DESC
+  </select>
+  
+<!--   故障报表 -->
+  <resultMap id="BaseResultMap_rExpert" type="com.szc.enterprise.web.model.ReportExpert" >
+   	<result column="TimeStamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="Platform" property="platform" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="Provider" property="provider" jdbcType="VARCHAR" />
+    <result column="DeviceExpertCount" property="deviceexpertcount" jdbcType="BIGINT" />
+    <result column="NetworkExpertCount" property="networkexpertcount" jdbcType="BIGINT" />
+    <result column="EpgRspSlowCount" property="epgrspslowcount" jdbcType="BIGINT" />
+    <result column="VodSourceProblem" property="vodsourceproblem" jdbcType="VARCHAR" />
+    <result column="LiveAbnormalUserCount" property="liveabnormalusercount" jdbcType="BIGINT" />
+    <result column="LiveAbnormalUserRate" property="liveabnormaluserrate" jdbcType="DOUBLE" />
+    <result column="VodAbnormalUserCount" property="vodabnormalusercount" jdbcType="BIGINT" />
+    <result column="VodAbnormalUserRate" property="vodabnormaluserrate" jdbcType="DOUBLE" />
+    <result column="AutFailUserCount" property="autfailusercount" jdbcType="BIGINT" />
+    <result column="AutFailUserRate" property="autfailuserrate" jdbcType="DOUBLE" /> 
+  </resultMap>
+  
+  <sql id="Example_Where_Clause_rExpert" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+   <sql id="Base_Column_List_rExpert" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    Platform, 
+    Location, 
+    Provider, 
+    avg(DeviceExpertCount) DeviceExpertCount, 
+    avg(NetworkExpertCount) NetworkExpertCount,
+    avg(EpgRspSlowCount) EpgRspSlowCount,
+    avg(VodSourceProblem) VodSourceProblem,
+    avg(LiveAbnormalUserCount) LiveAbnormalUserCount,
+    avg(LiveAbnormalUserRate) LiveAbnormalUserRate,
+    avg(VodAbnormalUserCount) VodAbnormalUserCount,
+    avg(VodAbnormalUserRate) VodAbnormalUserRate,
+    avg(AutFailUserCount) AutFailUserCount,
+    avg(AutFailUserRate) AutFailUserRate
+  </sql>
+  
+  <select id="selectByExampleDay_rExpert" resultMap="BaseResultMap_rExpert" parameterType="com.szc.enterprise.web.model.ReportExpertExample" >
+  	select 
+  	    <include refid="Base_Column_List_rExpert" />
+    	from report_expert
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rExpert" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' )
+        ORDER BY `TimeStamp` DESC
+  </select>
+  
+  <!-- 分组 -->
+  <sql id="Base_Column_List_rExpert_Group" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    <if test="platform_all == 1" >
+      platform,
+    </if>
+    <if test="platform_all != 1" >
+      <if test="platform != null and platform != ''" >
+      	platform,
+      </if>
+    </if>
+    <if test="location_all == 1" >
+      location,
+    </if>
+    <if test="location_all != 1" >
+      <if test="location != null and location != ''" >
+      	location,
+      </if>
+    </if>
+    <if test="provider_all == 1" >
+      provider,
+    </if>
+    <if test="provider_all != 1" >
+      <if test="provider != null and provider != ''" >
+      	provider,
+      </if>
+    </if>  
+    sum(DeviceExpertCount) DeviceExpertCount, 
+    sum(NetworkExpertCount) NetworkExpertCount,
+    sum(EpgRspSlowCount) EpgRspSlowCount,
+    sum(VodSourceProblem) VodSourceProblem,
+    sum(LiveAbnormalUserCount) LiveAbnormalUserCount,
+    avg(LiveAbnormalUserRate) LiveAbnormalUserRate,
+    sum(VodAbnormalUserCount) VodAbnormalUserCount,
+    avg(VodAbnormalUserRate) VodAbnormalUserRate,
+    sum(AutFailUserCount) AutFailUserCount,
+    avg(AutFailUserRate) AutFailUserRate
+  </sql>
+  
+  <select id="selectByExampleDay_rExpert_Group" resultMap="BaseResultMap_rExpert" parameterType="com.szc.enterprise.web.model.ReportExpertExample" >
+  	select 
+  	    <include refid="Base_Column_List_rExpert_Group" />
+    	from report_expert
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rExpert" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' )
+	    <if test="platform_all == 1" >
+	      ,Platform
+	    </if>
+	    <if test="platform_all != 1" >
+	      <if test="platform != null and platform != ''" >
+	      	,platform
+	      </if>
+	    </if>
+	    <if test="location_all == 1" >
+	      ,location
+	    </if>
+	    <if test="location_all != 1" >
+	      <if test="location != null and location != ''" >
+	      	,location
+	      </if>
+	    </if>
+	    <if test="provider_all == 1" >
+	      ,provider
+	    </if>
+	    <if test="provider_all != 1" >
+	      <if test="provider != null and provider != ''" >
+	      	,provider
+	      </if>
+	    </if>
+        ORDER BY `TimeStamp` DESC
+  </select>
+  
+  <!--   终端机顶盒性能报表 -->
+  <resultMap id="BaseResultMap_rProbeper" type="com.szc.enterprise.web.model.ReportProbeper" >
+   	<result column="TimeStamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="Platform" property="platform" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="Provider" property="provider" jdbcType="VARCHAR" />
+    <result column="UsedCPU" property="usedcpu" jdbcType="DOUBLE" />
+    <result column="UsedMEM" property="usedmem" jdbcType="DOUBLE" />
+    <result column="ChannelChgSec" property="channelchgsec" jdbcType="DOUBLE" />
+    <result column="BootUpSec" property="bootupsec" jdbcType="DOUBLE" />
+    <result column="VodLatencSec" property="vodlatencsec" jdbcType="DOUBLE" />
+    <result column="EgpRspSec" property="egprspsec" jdbcType="DOUBLE" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause_rProbeper" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+   <sql id="Base_Column_List_rProbeper" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    Platform, 
+    Location, 
+    Provider, 
+    avg(UsedCPU) UsedCPU, 
+    avg(UsedMEM) UsedMEM,
+    avg(ChannelChgSec) ChannelChgSec,
+    avg(BootUpSec) BootUpSec,
+    avg(VodLatencSec) VodLatencSec,
+    avg(EgpRspSec) EgpRspSec
+  </sql>
+  
+  <select id="selectByExampleDay_rProbeper" resultMap="BaseResultMap_rProbeper" parameterType="com.szc.enterprise.web.model.ReportProbeperExample" >
+  	select 
+  	    <include refid="Base_Column_List_rProbeper" />
+    	from report_probeper
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rProbeper" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' )
+        ORDER BY `TimeStamp` DESC
+  </select>
+  
+  <!-- 分组 -->
+  <sql id="Base_Column_List_rProbeper_Group" >
+    date_format(`TimeStamp` ,'%Y-%m-%d' ) `TimeStamp`, 
+    <if test="platform_all == 1" >
+      platform,
+    </if>
+    <if test="platform_all != 1" >
+      <if test="platform != null and platform != ''" >
+      	platform,
+      </if>
+    </if>
+    <if test="location_all == 1" >
+      location,
+    </if>
+    <if test="location_all != 1" >
+      <if test="location != null and location != ''" >
+      	location,
+      </if>
+    </if>
+    <if test="provider_all == 1" >
+      provider,
+    </if>
+    <if test="provider_all != 1" >
+      <if test="provider != null and provider != ''" >
+      	provider,
+      </if>
+    </if> 
+    avg(UsedCPU) UsedCPU, 
+    avg(UsedMEM) UsedMEM,
+    avg(ChannelChgSec) ChannelChgSec,
+    avg(BootUpSec) BootUpSec,
+    avg(VodLatencSec) VodLatencSec,
+    avg(EgpRspSec) EgpRspSec
+  </sql>
+  
+  <select id="selectByExampleDay_rProbeper_Group" resultMap="BaseResultMap_rProbeper" parameterType="com.szc.enterprise.web.model.ReportProbeperExample" >
+  	select 
+  	    <include refid="Base_Column_List_rProbeper_Group" />
+    	from report_probeper
+  	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause_rProbeper" />
+	    </if>
+	    GROUP BY date_format(`TimeStamp` ,'%Y-%m-%d' ) 
+	    <if test="platform_all == 1" >
+	      ,Platform
+	    </if>
+	    <if test="platform_all != 1" >
+	      <if test="platform != null and platform != ''" >
+	      	,platform
+	      </if>
+	    </if>
+	    <if test="location_all == 1" >
+	      ,location
+	    </if>
+	    <if test="location_all != 1" >
+	      <if test="location != null and location != ''" >
+	      	,location
+	      </if>
+	    </if>
+	    <if test="provider_all == 1" >
+	      ,provider
+	    </if>
+	    <if test="provider_all != 1" >
+	      <if test="provider != null and provider != ''" >
+	      	,provider
+	      </if>
+	    </if>
+        ORDER BY `TimeStamp` DESC
+  </select>
+</mapper>

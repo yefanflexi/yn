@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szc.enterprise.web.dao.dao.ReportUserbehaviorMapper">
+  <resultMap id="BaseResultMap" type="com.szc.enterprise.web.model.ReportUserbehavior">
+    <result column="TimeStamp" jdbcType="TIMESTAMP" property="timestamp" />
+    <result column="Platform" jdbcType="VARCHAR" property="platform" />
+    <result column="Location" jdbcType="VARCHAR" property="location" />
+    <result column="Provider" jdbcType="VARCHAR" property="provider" />
+    <result column="LiveUserCount" jdbcType="BIGINT" property="liveusercount" />
+    <result column="LiveUserRate" jdbcType="DOUBLE" property="liveuserrate" />
+    <result column="VodUserCount" jdbcType="BIGINT" property="vodusercount" />
+    <result column="VodUserRate" jdbcType="DOUBLE" property="voduserrate" />
+    <result column="BackUserCount" jdbcType="BIGINT" property="backusercount" />
+    <result column="BackUserRate" jdbcType="DOUBLE" property="backuserrate" />
+    <result column="LiveViewSec" jdbcType="DOUBLE" property="liveviewsec" />
+    <result column="VodViewSec" jdbcType="DOUBLE" property="vodviewsec" />
+    <result column="TotalViewSec" jdbcType="DOUBLE" property="totalviewsec" />
+    <result column="AvgViewSec" jdbcType="DOUBLE" property="avgviewsec" />
+    <result column="UserOnlineSec" jdbcType="DOUBLE" property="useronlinesec" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    TimeStamp, Platform, Location, Provider, LiveUserCount, LiveUserRate, VodUserCount, 
+    VodUserRate, BackUserCount, BackUserRate, LiveViewSec, VodViewSec, TotalViewSec, 
+    AvgViewSec, UserOnlineSec
+  </sql>
+  <select id="selectByExample" parameterType="com.szc.enterprise.web.model.ReportUserbehaviorExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_userbehavior
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart&gt;=0">
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.szc.enterprise.web.model.ReportUserbehaviorExample">
+    delete from report_userbehavior
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.szc.enterprise.web.model.ReportUserbehavior">
+    insert into report_userbehavior (TimeStamp, Platform, Location, 
+      Provider, LiveUserCount, LiveUserRate, 
+      VodUserCount, VodUserRate, BackUserCount, 
+      BackUserRate, LiveViewSec, VodViewSec, 
+      TotalViewSec, AvgViewSec, UserOnlineSec
+      )
+    values (#{timestamp,jdbcType=TIMESTAMP}, #{platform,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{provider,jdbcType=VARCHAR}, #{liveusercount,jdbcType=BIGINT}, #{liveuserrate,jdbcType=DOUBLE}, 
+      #{vodusercount,jdbcType=BIGINT}, #{voduserrate,jdbcType=DOUBLE}, #{backusercount,jdbcType=BIGINT}, 
+      #{backuserrate,jdbcType=DOUBLE}, #{liveviewsec,jdbcType=DOUBLE}, #{vodviewsec,jdbcType=DOUBLE}, 
+      #{totalviewsec,jdbcType=DOUBLE}, #{avgviewsec,jdbcType=DOUBLE}, #{useronlinesec,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.szc.enterprise.web.model.ReportUserbehavior">
+    insert into report_userbehavior
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timestamp != null">
+        TimeStamp,
+      </if>
+      <if test="platform != null">
+        Platform,
+      </if>
+      <if test="location != null">
+        Location,
+      </if>
+      <if test="provider != null">
+        Provider,
+      </if>
+      <if test="liveusercount != null">
+        LiveUserCount,
+      </if>
+      <if test="liveuserrate != null">
+        LiveUserRate,
+      </if>
+      <if test="vodusercount != null">
+        VodUserCount,
+      </if>
+      <if test="voduserrate != null">
+        VodUserRate,
+      </if>
+      <if test="backusercount != null">
+        BackUserCount,
+      </if>
+      <if test="backuserrate != null">
+        BackUserRate,
+      </if>
+      <if test="liveviewsec != null">
+        LiveViewSec,
+      </if>
+      <if test="vodviewsec != null">
+        VodViewSec,
+      </if>
+      <if test="totalviewsec != null">
+        TotalViewSec,
+      </if>
+      <if test="avgviewsec != null">
+        AvgViewSec,
+      </if>
+      <if test="useronlinesec != null">
+        UserOnlineSec,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null">
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="liveusercount != null">
+        #{liveusercount,jdbcType=BIGINT},
+      </if>
+      <if test="liveuserrate != null">
+        #{liveuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="vodusercount != null">
+        #{vodusercount,jdbcType=BIGINT},
+      </if>
+      <if test="voduserrate != null">
+        #{voduserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="backusercount != null">
+        #{backusercount,jdbcType=BIGINT},
+      </if>
+      <if test="backuserrate != null">
+        #{backuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="liveviewsec != null">
+        #{liveviewsec,jdbcType=DOUBLE},
+      </if>
+      <if test="vodviewsec != null">
+        #{vodviewsec,jdbcType=DOUBLE},
+      </if>
+      <if test="totalviewsec != null">
+        #{totalviewsec,jdbcType=DOUBLE},
+      </if>
+      <if test="avgviewsec != null">
+        #{avgviewsec,jdbcType=DOUBLE},
+      </if>
+      <if test="useronlinesec != null">
+        #{useronlinesec,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.szc.enterprise.web.model.ReportUserbehaviorExample" resultType="java.lang.Integer">
+    select count(*) from report_userbehavior
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update report_userbehavior
+    <set>
+      <if test="record.timestamp != null">
+        TimeStamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platform != null">
+        Platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null">
+        Location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provider != null">
+        Provider = #{record.provider,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liveusercount != null">
+        LiveUserCount = #{record.liveusercount,jdbcType=BIGINT},
+      </if>
+      <if test="record.liveuserrate != null">
+        LiveUserRate = #{record.liveuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vodusercount != null">
+        VodUserCount = #{record.vodusercount,jdbcType=BIGINT},
+      </if>
+      <if test="record.voduserrate != null">
+        VodUserRate = #{record.voduserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.backusercount != null">
+        BackUserCount = #{record.backusercount,jdbcType=BIGINT},
+      </if>
+      <if test="record.backuserrate != null">
+        BackUserRate = #{record.backuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.liveviewsec != null">
+        LiveViewSec = #{record.liveviewsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vodviewsec != null">
+        VodViewSec = #{record.vodviewsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalviewsec != null">
+        TotalViewSec = #{record.totalviewsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.avgviewsec != null">
+        AvgViewSec = #{record.avgviewsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.useronlinesec != null">
+        UserOnlineSec = #{record.useronlinesec,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update report_userbehavior
+    set TimeStamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      Platform = #{record.platform,jdbcType=VARCHAR},
+      Location = #{record.location,jdbcType=VARCHAR},
+      Provider = #{record.provider,jdbcType=VARCHAR},
+      LiveUserCount = #{record.liveusercount,jdbcType=BIGINT},
+      LiveUserRate = #{record.liveuserrate,jdbcType=DOUBLE},
+      VodUserCount = #{record.vodusercount,jdbcType=BIGINT},
+      VodUserRate = #{record.voduserrate,jdbcType=DOUBLE},
+      BackUserCount = #{record.backusercount,jdbcType=BIGINT},
+      BackUserRate = #{record.backuserrate,jdbcType=DOUBLE},
+      LiveViewSec = #{record.liveviewsec,jdbcType=DOUBLE},
+      VodViewSec = #{record.vodviewsec,jdbcType=DOUBLE},
+      TotalViewSec = #{record.totalviewsec,jdbcType=DOUBLE},
+      AvgViewSec = #{record.avgviewsec,jdbcType=DOUBLE},
+      UserOnlineSec = #{record.useronlinesec,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

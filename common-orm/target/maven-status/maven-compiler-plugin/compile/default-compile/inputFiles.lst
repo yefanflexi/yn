@@ -1,0 +1,17 @@
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\generic\GenericService.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\MSDialect.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\MSPageHepler.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\mysql\PaginationResultSetHandlerInterceptor.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\Dialect.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\PostgreDialect.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\PostgrePageHepler.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\OracleDialect.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\mysql\Page.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\DialectFactory.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\mysql\PaginationStatementHandlerInterceptor.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\MySql5Dialect.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\dialect\MySql5PageHepler.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\generic\GenericEnum.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\generic\GenericDao.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\generic\GenericServiceImpl.java
+C:\Users\vixtel\Desktop\work\yn\common-orm\src\main\java\com\szc\common\orm\mysql\MyBlobTypeHandler.java

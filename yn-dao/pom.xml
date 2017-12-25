@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+   <parent>
+	  <groupId>com.szc.enterprise</groupId>
+	  <artifactId>yn-master</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+	  <relativePath>../yn-master/pom.xml</relativePath>
+  </parent> 
+  <artifactId>yn-dao</artifactId>
+  <packaging>jar</packaging>
+
+  <name>yn-dao</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+            <!-- mybatis start-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis.spring.version}</version>
+        </dependency>
+        <!--mybatis end-->
+        <dependency>
+        	<groupId>com.szc.enterprise</groupId>
+        	<artifactId>yn-model</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
+<!--         <dependency> -->
+<!--         	<groupId>com.szc.common</groupId> -->
+<!--         	<artifactId>common-generic</artifactId> -->
+<!--         	<version>0.0.1-SNAPSHOT</version> -->
+<!--         </dependency> -->
+        <dependency>
+        	<groupId>com.szc.common</groupId>
+        	<artifactId>common-orm</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
+  </dependencies>
+  <!-- 如果不添加此节点mybatis的mapper.xml文件都会被漏掉。 -->  
+    <build>  
+        <resources>  
+            <resource>  
+                <directory>src/main/java</directory>  
+                <includes>  
+                    <include>**/*.properties</include>  
+                    <include>**/*.xml</include>  
+                </includes>  
+                <filtering>false</filtering>  
+            </resource>  
+        </resources>  
+    </build> 
+</project>
