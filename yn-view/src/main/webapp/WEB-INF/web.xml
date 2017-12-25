@@ -81,11 +81,6 @@
         <!-- 拦截所有/rest/* 的请求,交给DispatcherServlet处理,性能最好 -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <!-- 拦截所有/rest/* 的请求,交给DispatcherServlet处理,性能最好 -->
-        <url-pattern>*.do</url-pattern>
-    </servlet-mapping>
 
     <!-- 首页 -->
     <welcome-file-list>
