@@ -36,7 +36,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <body class="other404">
     <div class="box">
         <img src="<%=path %>/static/images/system/error404.jpg"/>
-        <a href="<%=path %>/rest/user/index">返回首页</a>
+        <a href="<%=path %>/page/index">返回首页</a>
     </div>
 </body>
 <!-- END BODY -->

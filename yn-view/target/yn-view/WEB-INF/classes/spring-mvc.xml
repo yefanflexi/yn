@@ -14,7 +14,7 @@
 
     <!-- 扫描controller（controller层注入） -->
     <context:component-scan base-package="com.szc.enterprise.web.controller"/>
-
+	<mvc:resources mapping="/static/**" location="/static/" />
     <!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的 -->
     <!-- 指定自己定义的validator -->
     <mvc:annotation-driven validator="validator"/>
