@@ -111,6 +111,7 @@
                             <th lay-data="{field:'epgrspavgsec', width:130}">EPG响应平均时长(ms)</th>
                             <th lay-data="{field:'epgrsptimelyrate', width:130}">EPG响应及时率(%)</th>
                             <th lay-data="{field:'tvfreezeuserrate', width:130}">电视卡顿总用户占比(%)</th>
+                            <th lay-data="{field:'tvfreezesecrate', width:130}">电视卡顿总时长占比(%)</th>
                             <th lay-data="{field:'liveuserfreezesecrate', width:130}">直播用户卡顿时长占比(%)</th>
                             <th lay-data="{field:'voduserfreezesecrate', width:130}">点播用户卡顿时长占比(%)</th>
                             <th lay-data="{field:'mdlostuserrate', width:130}">媒体丢包用户占比(%)</th>
@@ -159,6 +160,9 @@
 	                    		</td>
 	                    		<td>
 	                    			<fmt:formatNumber type="number" value="${item.tvfreezeuserrate *100}" maxFractionDigits="2"/>%
+	                    		</td>
+	                    		<td>
+	                    			<fmt:formatNumber type="number" value="${item.tvfreezesecrate *100}" maxFractionDigits="2"/>%
 	                    		</td>
 	                    		<td>
 	                    			<fmt:formatNumber type="number" value="${item.liveuserfreezesecrate *100}" maxFractionDigits="2"/>%

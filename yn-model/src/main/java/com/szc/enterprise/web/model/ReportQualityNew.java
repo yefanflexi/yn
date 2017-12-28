@@ -22,8 +22,11 @@ public class ReportQualityNew {
     private Double tvfreezeusercount;
 
     private Double tvfreezeuserrate;
+    
+    private Double tvfreezesecrate;
 
-    private Double liveuserfreezesecrate;
+
+	private Double liveuserfreezesecrate;
 
     private Double voduserfreezesecrate;
 
@@ -109,6 +112,13 @@ public class ReportQualityNew {
         this.platform = platform == null ? null : platform.trim();
     }
 
+    public Double getTvfreezesecrate() {
+    	return tvfreezesecrate;
+    }
+    
+    public void setTvfreezesecrate(Double tvfreezesecrate) {
+    	this.tvfreezesecrate = tvfreezesecrate;
+    }
     public String getLocation() {
         return location;
     }

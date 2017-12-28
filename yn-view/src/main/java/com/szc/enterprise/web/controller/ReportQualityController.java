@@ -130,6 +130,7 @@ public class ReportQualityController extends BaseController {
         		exportAttrible8.setExtValue("%");
         		exportAttribles.add(exportAttrible8);
         		
+        		
         		ExportAttrible exportAttrible9 = new ExportAttrible();
         		exportAttrible9.setFiledKey("liveuserfreezesecrate");
         		exportAttrible9.setFiledName("直播用户卡顿时长占比");
@@ -455,6 +456,12 @@ public class ReportQualityController extends BaseController {
         		exportAttrible8.setMultiplyValue("100");
         		exportAttrible8.setExtValue("%");
         		exportAttribles.add(exportAttrible8);
+        		
+        		ExportAttrible exportAttrible35 = new ExportAttrible();
+        		exportAttrible35.setFiledKey("tvfreezesecrate");
+        		exportAttrible35.setFiledName("电视卡顿总时长占比");
+        		exportAttrible35.setFiledType(1);
+        		exportAttribles.add(exportAttrible35);
         		
         		ExportAttrible exportAttrible9 = new ExportAttrible();
         		exportAttrible9.setFiledKey("liveuserfreezesecrate");

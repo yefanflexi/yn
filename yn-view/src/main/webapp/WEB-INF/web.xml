@@ -79,7 +79,7 @@
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <!-- 拦截所有/rest/* 的请求,交给DispatcherServlet处理,性能最好 -->
-        <url-pattern>/</url-pattern>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 
     <!-- 首页 -->
@@ -90,19 +90,19 @@
     <!-- 错误页 -->
     <error-page>
         <error-code>404</error-code>
-        <location>/page/404</location>
+        <location>/rest/page/404</location>
     </error-page>
     <error-page>
         <error-code>405</error-code>
-        <location>/page/404</location>
+        <location>/rest/page/404</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/page/500</location>
+        <location>/rest/page/500</location>
     </error-page>
     <error-page>
         <exception-type>org.apache.shiro.authz.AuthorizationException</exception-type>
-        <location>/page/401</location>
+        <location>/rest/page/401</location>
     </error-page>
 	<session-config> 
     	<session-timeout>720</session-timeout> 

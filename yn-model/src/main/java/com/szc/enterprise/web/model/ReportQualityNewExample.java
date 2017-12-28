@@ -809,6 +809,66 @@ public class ReportQualityNewExample {
             addCriterion("TvFreezeUserRate not between", value1, value2, "tvfreezeuserrate");
             return (Criteria) this;
         }
+        
+        public Criteria andTvfreezesecrateIsNull() {
+            addCriterion("TvFreezeSecRate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateIsNotNull() {
+            addCriterion("TvFreezeSecRate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateEqualTo(Double value) {
+            addCriterion("TvFreezeSecRate =", value, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateNotEqualTo(Double value) {
+            addCriterion("TvFreezeSecRate <>", value, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateGreaterThan(Double value) {
+            addCriterion("TvFreezeSecRate >", value, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateGreaterThanOrEqualTo(Double value) {
+            addCriterion("TvFreezeSecRate >=", value, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateLessThan(Double value) {
+            addCriterion("TvFreezeSecRate <", value, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateLessThanOrEqualTo(Double value) {
+            addCriterion("TvFreezeSecRate <=", value, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateIn(List<Double> values) {
+        	addCriterion("TvFreezeSecRate not in", values, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateNotIn(List<Double> values) {
+            addCriterion("TvFreezeSecRate not in", values, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateBetween(Double value1, Double value2) {
+            addCriterion("TvFreezeSecRate between", value1, value2, "tvfreezesecrate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTvfreezesecrateNotBetween(Double value1, Double value2) {
+            addCriterion("TvFreezeSecRate not between", value1, value2, "tvfreezesecrate");
+            return (Criteria) this;
+        }
 
         public Criteria andLiveuserfreezesecrateIsNull() {
             addCriterion("LiveUserFreezeSecRate is null");
