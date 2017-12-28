@@ -12,6 +12,7 @@
     <result column="EpgRspTimelyRate" property="epgrsptimelyrate" jdbcType="DOUBLE" />
     <result column="TvFreezeUserCount" property="tvfreezeusercount" jdbcType="DOUBLE" />
     <result column="TvFreezeUserRate" property="tvfreezeuserrate" jdbcType="DOUBLE" />
+    <result column="TvFreezeSecRate" property="tvfreezesecrate" jdbcType="DOUBLE" />
     <result column="LiveUserFreezeSecRate" property="liveuserfreezesecrate" jdbcType="DOUBLE" />
     <result column="VodUserFreezeSecRate" property="voduserfreezesecrate" jdbcType="DOUBLE" />
     <result column="MdLostUserRate" property="mdlostuserrate" jdbcType="DOUBLE" />
@@ -108,7 +109,7 @@
   </sql>
   <sql id="Base_Column_List" >
     TimeStamp, Platform, Location, Provider, AuthRspSuccRate, EpgRspAvgSec, EpgRspTimelyCount, 
-    EpgRspTimelyRate, TvFreezeUserCount, TvFreezeUserRate, LiveUserFreezeSecRate, VodUserFreezeSecRate, 
+    EpgRspTimelyRate, TvFreezeUserCount, TvFreezeUserRate, TvFreezeSecrate, LiveUserFreezeSecRate, VodUserFreezeSecRate, 
     MdLostUserRate, ChannelChgSecSuccRate, ChannelChgAvgSec, VodRspTimelyCount, VodRspTimelyRate, 
     BackRspTimelyCount, BackRspTimelyRate, VodRspAvgSec, BackRspAvgSec, VodFviewLatencTime, 
     BackFviewLatencTime, TvLiveCutRate, LiveCutSecCount, FreezeCount, VodFreezeCount, 
@@ -143,7 +144,7 @@
     insert into report_quality_new (TimeStamp, Platform, Location, 
       Provider, AuthRspSuccRate, EpgRspAvgSec, 
       EpgRspTimelyCount, EpgRspTimelyRate, TvFreezeUserCount, 
-      TvFreezeUserRate, LiveUserFreezeSecRate, 
+      TvFreezeUserRate, TvFreezeSecrate, LiveUserFreezeSecRate, 
       VodUserFreezeSecRate, MdLostUserRate, ChannelChgSecSuccRate, 
       ChannelChgAvgSec, VodRspTimelyCount, VodRspTimelyRate, 
       BackRspTimelyCount, BackRspTimelyRate, VodRspAvgSec, 
@@ -159,7 +160,7 @@
     values (#{timestamp,jdbcType=TIMESTAMP}, #{platform,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
       #{provider,jdbcType=VARCHAR}, #{authrspsuccrate,jdbcType=DOUBLE}, #{epgrspavgsec,jdbcType=DOUBLE}, 
       #{epgrsptimelycount,jdbcType=DOUBLE}, #{epgrsptimelyrate,jdbcType=DOUBLE}, #{tvfreezeusercount,jdbcType=DOUBLE}, 
-      #{tvfreezeuserrate,jdbcType=DOUBLE}, #{liveuserfreezesecrate,jdbcType=DOUBLE}, 
+      #{tvfreezeuserrate,jdbcType=DOUBLE}, #{tvfreezesecrate,jdbcType=DOUBLE}, #{liveuserfreezesecrate,jdbcType=DOUBLE}, 
       #{voduserfreezesecrate,jdbcType=DOUBLE}, #{mdlostuserrate,jdbcType=DOUBLE}, #{channelchgsecsuccrate,jdbcType=DOUBLE}, 
       #{channelchgavgsec,jdbcType=DOUBLE}, #{vodrsptimelycount,jdbcType=DOUBLE}, #{vodrsptimelyrate,jdbcType=DOUBLE}, 
       #{backrsptimelycount,jdbcType=DOUBLE}, #{backrsptimelyrate,jdbcType=DOUBLE}, #{vodrspavgsec,jdbcType=DOUBLE}, 
@@ -205,6 +206,9 @@
       </if>
       <if test="tvfreezeuserrate != null" >
         TvFreezeUserRate,
+      </if>
+      <if test="tvfreezesecrate != null" >
+        TvFreezeSecRate,
       </if>
       <if test="liveuserfreezesecrate != null" >
         LiveUserFreezeSecRate,
@@ -342,6 +346,9 @@
       </if>
       <if test="tvfreezeuserrate != null" >
         #{tvfreezeuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="tvfreezesecrate != null" >
+        #{tvfreezesecrate,jdbcType=DOUBLE},
       </if>
       <if test="liveuserfreezesecrate != null" >
         #{liveuserfreezesecrate,jdbcType=DOUBLE},
@@ -489,6 +496,9 @@
       <if test="record.tvfreezeuserrate != null" >
         TvFreezeUserRate = #{record.tvfreezeuserrate,jdbcType=DOUBLE},
       </if>
+      <if test="record.tvfreezesecrate != null" >
+        TvFreezeSecRate = #{record.tvfreezesecrate,jdbcType=DOUBLE},
+      </if>
       <if test="record.liveuserfreezesecrate != null" >
         LiveUserFreezeSecRate = #{record.liveuserfreezesecrate,jdbcType=DOUBLE},
       </if>
@@ -611,6 +621,7 @@
       EpgRspTimelyRate = #{record.epgrsptimelyrate,jdbcType=DOUBLE},
       TvFreezeUserCount = #{record.tvfreezeusercount,jdbcType=DOUBLE},
       TvFreezeUserRate = #{record.tvfreezeuserrate,jdbcType=DOUBLE},
+      TvFreezeSecRate = #{record.tvfreezesecrate,jdbcType=DOUBLE},
       LiveUserFreezeSecRate = #{record.liveuserfreezesecrate,jdbcType=DOUBLE},
       VodUserFreezeSecRate = #{record.voduserfreezesecrate,jdbcType=DOUBLE},
       MdLostUserRate = #{record.mdlostuserrate,jdbcType=DOUBLE},

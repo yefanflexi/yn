@@ -223,6 +223,7 @@
     <result column="EpgRspTimelyRate" property="epgrsptimelyrate" jdbcType="DOUBLE" />
     <result column="TvFreezeUserCount" property="tvfreezeusercount" jdbcType="DOUBLE" />
     <result column="TvFreezeUserRate" property="tvfreezeuserrate" jdbcType="DOUBLE" />
+    <result column="TvFreezeSecRate" property="tvfreezesecrate" jdbcType="DOUBLE" />
     <result column="LiveUserFreezeSecRate" property="liveuserfreezesecrate" jdbcType="DOUBLE" />
     <result column="VodUserFreezeSecRate" property="voduserfreezesecrate" jdbcType="DOUBLE" />
     <result column="MdLostUserRate" property="mdlostuserrate" jdbcType="DOUBLE" />
@@ -318,7 +319,8 @@
     truncate(avg(AuthRspSuccRate), 4) AuthRspSuccRate, 
     avg(EpgRspAvgSec) EpgRspAvgSec, 
     sum(EpgRspTimelyCount)/sum(TotalUserCount) EpgRspTimelyRate, 
-    sum(TvFreezeUserCount)/sum(TotalUserCount) TvFreezeUserRate, 
+    sum(TvFreezeUserCount)/sum(TotalUserCount) TvFreezeUserRate,
+    sum(TvFreezeSecRate) TvFreezeSecRate,
     sum(LiveFreezeSec)/sum(LiveSec) LiveUserFreezeSecRate,
     sum(VodFreezeSec)/sum(VodSec) VodUserFreezeSecRate, 
     avg(MdLostUserRate) MdLostUserRate, 
