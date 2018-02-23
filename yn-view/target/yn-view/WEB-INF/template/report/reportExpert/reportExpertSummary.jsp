@@ -99,7 +99,7 @@
                 			</tr>
                 		</table>
                 	</div>
-					<table lay-filter="parse-table-demo">
+					<table class="layui-table" lay-filter="parse-table-demo">
                 		<thead>
                 			<tr>
 	                			<th lay-data="{field:'timestamp', width:110}">日期</th>

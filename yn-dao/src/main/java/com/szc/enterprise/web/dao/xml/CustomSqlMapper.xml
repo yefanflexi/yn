@@ -246,6 +246,7 @@
     <result column="VodFreezeSec" property="vodfreezesec" jdbcType="DOUBLE" />
     <result column="BackFreezeSec" property="backfreezesec" jdbcType="DOUBLE" />
     <result column="LiveFreezeSec" property="livefreezesec" jdbcType="DOUBLE" />
+    <result column="TotalFreezeSec" property="totalfreezesec" jdbcType="DOUBLE" />
     <result column="NetwokLostRate" property="netwoklostrate" jdbcType="DOUBLE" />
     <result column="NetworkAvgSec" property="networkavgsec" jdbcType="DOUBLE" />
     <result column="TotalUserMosCount" property="totalusermoscount" jdbcType="DOUBLE" />
@@ -259,6 +260,7 @@
     <result column="LiveSec" property="livesec" jdbcType="DOUBLE" />
     <result column="VodSec" property="vodsec" jdbcType="DOUBLE" />
     <result column="BackSec" property="backsec" jdbcType="DOUBLE" />
+    <result column="TotalSec" property="totalsec" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause_rQuality_new" >
     <where >
@@ -320,7 +322,7 @@
     avg(EpgRspAvgSec) EpgRspAvgSec, 
     sum(EpgRspTimelyCount)/sum(TotalUserCount) EpgRspTimelyRate, 
     sum(TvFreezeUserCount)/sum(TotalUserCount) TvFreezeUserRate,
-    sum(TvFreezeSecRate) TvFreezeSecRate,
+    sum(TotalFreezeSec)/sum(TotalSec) TvFreezeSecRate,
     sum(LiveFreezeSec)/sum(LiveSec) LiveUserFreezeSecRate,
     sum(VodFreezeSec)/sum(VodSec) VodUserFreezeSecRate, 
     avg(MdLostUserRate) MdLostUserRate, 

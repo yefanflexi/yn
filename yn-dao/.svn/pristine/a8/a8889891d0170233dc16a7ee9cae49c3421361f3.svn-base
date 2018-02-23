@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.szc.enterprise.web.dao.dao.ReportProbeperMapper" >
+  <resultMap id="BaseResultMap" type="com.szc.enterprise.web.model.ReportProbeper" >
+    <result column="TimeStamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="Platform" property="platform" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="Provider" property="provider" jdbcType="VARCHAR" />
+    <result column="UsedCPU" property="usedcpu" jdbcType="DOUBLE" />
+    <result column="UsedMEM" property="usedmem" jdbcType="DOUBLE" />
+    <result column="ChannelChgSec" property="channelchgsec" jdbcType="DOUBLE" />
+    <result column="BootUpSec" property="bootupsec" jdbcType="DOUBLE" />
+    <result column="VodLatencSec" property="vodlatencsec" jdbcType="DOUBLE" />
+    <result column="EgpRspSec" property="egprspsec" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TimeStamp, Platform, Location, Provider, UsedCPU, UsedMEM, ChannelChgSec, BootUpSec, 
+    VodLatencSec, EgpRspSec
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.szc.enterprise.web.model.ReportProbeperExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_probeper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.szc.enterprise.web.model.ReportProbeperExample" >
+    delete from report_probeper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.szc.enterprise.web.model.ReportProbeper" >
+    insert into report_probeper (TimeStamp, Platform, Location, 
+      Provider, UsedCPU, UsedMEM, 
+      ChannelChgSec, BootUpSec, VodLatencSec, 
+      EgpRspSec)
+    values (#{timestamp,jdbcType=TIMESTAMP}, #{platform,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{provider,jdbcType=VARCHAR}, #{usedcpu,jdbcType=DOUBLE}, #{usedmem,jdbcType=DOUBLE}, 
+      #{channelchgsec,jdbcType=DOUBLE}, #{bootupsec,jdbcType=DOUBLE}, #{vodlatencsec,jdbcType=DOUBLE}, 
+      #{egprspsec,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.szc.enterprise.web.model.ReportProbeper" >
+    insert into report_probeper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timestamp != null" >
+        TimeStamp,
+      </if>
+      <if test="platform != null" >
+        Platform,
+      </if>
+      <if test="location != null" >
+        Location,
+      </if>
+      <if test="provider != null" >
+        Provider,
+      </if>
+      <if test="usedcpu != null" >
+        UsedCPU,
+      </if>
+      <if test="usedmem != null" >
+        UsedMEM,
+      </if>
+      <if test="channelchgsec != null" >
+        ChannelChgSec,
+      </if>
+      <if test="bootupsec != null" >
+        BootUpSec,
+      </if>
+      <if test="vodlatencsec != null" >
+        VodLatencSec,
+      </if>
+      <if test="egprspsec != null" >
+        EgpRspSec,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="usedcpu != null" >
+        #{usedcpu,jdbcType=DOUBLE},
+      </if>
+      <if test="usedmem != null" >
+        #{usedmem,jdbcType=DOUBLE},
+      </if>
+      <if test="channelchgsec != null" >
+        #{channelchgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="bootupsec != null" >
+        #{bootupsec,jdbcType=DOUBLE},
+      </if>
+      <if test="vodlatencsec != null" >
+        #{vodlatencsec,jdbcType=DOUBLE},
+      </if>
+      <if test="egprspsec != null" >
+        #{egprspsec,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.szc.enterprise.web.model.ReportProbeperExample" resultType="java.lang.Integer" >
+    select count(*) from report_probeper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_probeper
+    <set >
+      <if test="record.timestamp != null" >
+        TimeStamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platform != null" >
+        Platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null" >
+        Location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provider != null" >
+        Provider = #{record.provider,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usedcpu != null" >
+        UsedCPU = #{record.usedcpu,jdbcType=DOUBLE},
+      </if>
+      <if test="record.usedmem != null" >
+        UsedMEM = #{record.usedmem,jdbcType=DOUBLE},
+      </if>
+      <if test="record.channelchgsec != null" >
+        ChannelChgSec = #{record.channelchgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bootupsec != null" >
+        BootUpSec = #{record.bootupsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vodlatencsec != null" >
+        VodLatencSec = #{record.vodlatencsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.egprspsec != null" >
+        EgpRspSec = #{record.egprspsec,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_probeper
+    set TimeStamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      Platform = #{record.platform,jdbcType=VARCHAR},
+      Location = #{record.location,jdbcType=VARCHAR},
+      Provider = #{record.provider,jdbcType=VARCHAR},
+      UsedCPU = #{record.usedcpu,jdbcType=DOUBLE},
+      UsedMEM = #{record.usedmem,jdbcType=DOUBLE},
+      ChannelChgSec = #{record.channelchgsec,jdbcType=DOUBLE},
+      BootUpSec = #{record.bootupsec,jdbcType=DOUBLE},
+      VodLatencSec = #{record.vodlatencsec,jdbcType=DOUBLE},
+      EgpRspSec = #{record.egprspsec,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

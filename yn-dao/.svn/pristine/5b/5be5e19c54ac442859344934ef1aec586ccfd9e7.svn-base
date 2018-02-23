@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.szc.enterprise.web.dao.dao.ReportQualityMapper" >
+  <resultMap id="BaseResultMap" type="com.szc.enterprise.web.model.ReportQuality" >
+    <result column="TimeStamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="Platform" property="platform" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="Provider" property="provider" jdbcType="VARCHAR" />
+    <result column="AuthRspSuccRate" property="authrspsuccrate" jdbcType="DOUBLE" />
+    <result column="EpgRspAvgSec" property="epgrspavgsec" jdbcType="DOUBLE" />
+    <result column="EpgRspTimelyRate" property="epgrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="TvFreezeUserRate" property="tvfreezeuserrate" jdbcType="DOUBLE" />
+    <result column="LiveUserFreezeSecRate" property="liveuserfreezesecrate" jdbcType="DOUBLE" />
+    <result column="VodUserFreezeSecRate" property="voduserfreezesecrate" jdbcType="DOUBLE" />
+    <result column="MdLostUserRate" property="mdlostuserrate" jdbcType="DOUBLE" />
+    <result column="ChannelChgSecSuccRate" property="channelchgsecsuccrate" jdbcType="DOUBLE" />
+    <result column="ChannelChgAvgSec" property="channelchgavgsec" jdbcType="DOUBLE" />
+    <result column="VodRspTimelyRate" property="vodrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="BackRspTimelyRate" property="backrsptimelyrate" jdbcType="DOUBLE" />
+    <result column="VodRspAvgSec" property="vodrspavgsec" jdbcType="DOUBLE" />
+    <result column="BackRspAvgSec" property="backrspavgsec" jdbcType="DOUBLE" />
+    <result column="VodFviewLatencTime" property="vodfviewlatenctime" jdbcType="DOUBLE" />
+    <result column="BackFviewLatencTime" property="backfviewlatenctime" jdbcType="DOUBLE" />
+    <result column="TvLiveCutRate" property="tvlivecutrate" jdbcType="DOUBLE" />
+    <result column="LiveCutSecCount" property="livecutseccount" jdbcType="BIGINT" />
+    <result column="FreezeCount" property="freezecount" jdbcType="BIGINT" />
+    <result column="VodFreezeCount" property="vodfreezecount" jdbcType="BIGINT" />
+    <result column="BackFreezeCount" property="backfreezecount" jdbcType="BIGINT" />
+    <result column="LiveFreezeCount" property="livefreezecount" jdbcType="BIGINT" />
+    <result column="VodFreezeSec" property="vodfreezesec" jdbcType="DOUBLE" />
+    <result column="BackFreezeSec" property="backfreezesec" jdbcType="DOUBLE" />
+    <result column="LiveFreezeSec" property="livefreezesec" jdbcType="DOUBLE" />
+    <result column="NetwokLostRate" property="netwoklostrate" jdbcType="DOUBLE" />
+    <result column="NetworkAvgSec" property="networkavgsec" jdbcType="DOUBLE" />
+    <result column="TotalUserMosCount" property="totalusermoscount" jdbcType="DOUBLE" />
+    <result column="VodUserMosCount" property="vodusermoscount" jdbcType="DOUBLE" />
+    <result column="BackUserMosCount" property="backusermoscount" jdbcType="DOUBLE" />
+    <result column="LiveUserMosCount" property="liveusermoscount" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TimeStamp, Platform, Location, Provider, AuthRspSuccRate, EpgRspAvgSec, EpgRspTimelyRate, 
+    TvFreezeUserRate, LiveUserFreezeSecRate, VodUserFreezeSecRate, MdLostUserRate, ChannelChgSecSuccRate, 
+    ChannelChgAvgSec, VodRspTimelyRate, BackRspTimelyRate, VodRspAvgSec, BackRspAvgSec, 
+    VodFviewLatencTime, BackFviewLatencTime, TvLiveCutRate, LiveCutSecCount, FreezeCount, 
+    VodFreezeCount, BackFreezeCount, LiveFreezeCount, VodFreezeSec, BackFreezeSec, LiveFreezeSec, 
+    NetwokLostRate, NetworkAvgSec, TotalUserMosCount, VodUserMosCount, BackUserMosCount, 
+    LiveUserMosCount
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.szc.enterprise.web.model.ReportQualityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_quality
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.szc.enterprise.web.model.ReportQualityExample" >
+    delete from report_quality
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.szc.enterprise.web.model.ReportQuality" >
+    insert into report_quality (TimeStamp, Platform, Location, 
+      Provider, AuthRspSuccRate, EpgRspAvgSec, 
+      EpgRspTimelyRate, TvFreezeUserRate, LiveUserFreezeSecRate, 
+      VodUserFreezeSecRate, MdLostUserRate, ChannelChgSecSuccRate, 
+      ChannelChgAvgSec, VodRspTimelyRate, BackRspTimelyRate, 
+      VodRspAvgSec, BackRspAvgSec, VodFviewLatencTime, 
+      BackFviewLatencTime, TvLiveCutRate, LiveCutSecCount, 
+      FreezeCount, VodFreezeCount, BackFreezeCount, 
+      LiveFreezeCount, VodFreezeSec, BackFreezeSec, 
+      LiveFreezeSec, NetwokLostRate, NetworkAvgSec, 
+      TotalUserMosCount, VodUserMosCount, BackUserMosCount, 
+      LiveUserMosCount)
+    values (#{timestamp,jdbcType=TIMESTAMP}, #{platform,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{provider,jdbcType=VARCHAR}, #{authrspsuccrate,jdbcType=DOUBLE}, #{epgrspavgsec,jdbcType=DOUBLE}, 
+      #{epgrsptimelyrate,jdbcType=DOUBLE}, #{tvfreezeuserrate,jdbcType=DOUBLE}, #{liveuserfreezesecrate,jdbcType=DOUBLE}, 
+      #{voduserfreezesecrate,jdbcType=DOUBLE}, #{mdlostuserrate,jdbcType=DOUBLE}, #{channelchgsecsuccrate,jdbcType=DOUBLE}, 
+      #{channelchgavgsec,jdbcType=DOUBLE}, #{vodrsptimelyrate,jdbcType=DOUBLE}, #{backrsptimelyrate,jdbcType=DOUBLE}, 
+      #{vodrspavgsec,jdbcType=DOUBLE}, #{backrspavgsec,jdbcType=DOUBLE}, #{vodfviewlatenctime,jdbcType=DOUBLE}, 
+      #{backfviewlatenctime,jdbcType=DOUBLE}, #{tvlivecutrate,jdbcType=DOUBLE}, #{livecutseccount,jdbcType=BIGINT}, 
+      #{freezecount,jdbcType=BIGINT}, #{vodfreezecount,jdbcType=BIGINT}, #{backfreezecount,jdbcType=BIGINT}, 
+      #{livefreezecount,jdbcType=BIGINT}, #{vodfreezesec,jdbcType=DOUBLE}, #{backfreezesec,jdbcType=DOUBLE}, 
+      #{livefreezesec,jdbcType=DOUBLE}, #{netwoklostrate,jdbcType=DOUBLE}, #{networkavgsec,jdbcType=DOUBLE}, 
+      #{totalusermoscount,jdbcType=DOUBLE}, #{vodusermoscount,jdbcType=DOUBLE}, #{backusermoscount,jdbcType=DOUBLE}, 
+      #{liveusermoscount,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.szc.enterprise.web.model.ReportQuality" >
+    insert into report_quality
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timestamp != null" >
+        TimeStamp,
+      </if>
+      <if test="platform != null" >
+        Platform,
+      </if>
+      <if test="location != null" >
+        Location,
+      </if>
+      <if test="provider != null" >
+        Provider,
+      </if>
+      <if test="authrspsuccrate != null" >
+        AuthRspSuccRate,
+      </if>
+      <if test="epgrspavgsec != null" >
+        EpgRspAvgSec,
+      </if>
+      <if test="epgrsptimelyrate != null" >
+        EpgRspTimelyRate,
+      </if>
+      <if test="tvfreezeuserrate != null" >
+        TvFreezeUserRate,
+      </if>
+      <if test="liveuserfreezesecrate != null" >
+        LiveUserFreezeSecRate,
+      </if>
+      <if test="voduserfreezesecrate != null" >
+        VodUserFreezeSecRate,
+      </if>
+      <if test="mdlostuserrate != null" >
+        MdLostUserRate,
+      </if>
+      <if test="channelchgsecsuccrate != null" >
+        ChannelChgSecSuccRate,
+      </if>
+      <if test="channelchgavgsec != null" >
+        ChannelChgAvgSec,
+      </if>
+      <if test="vodrsptimelyrate != null" >
+        VodRspTimelyRate,
+      </if>
+      <if test="backrsptimelyrate != null" >
+        BackRspTimelyRate,
+      </if>
+      <if test="vodrspavgsec != null" >
+        VodRspAvgSec,
+      </if>
+      <if test="backrspavgsec != null" >
+        BackRspAvgSec,
+      </if>
+      <if test="vodfviewlatenctime != null" >
+        VodFviewLatencTime,
+      </if>
+      <if test="backfviewlatenctime != null" >
+        BackFviewLatencTime,
+      </if>
+      <if test="tvlivecutrate != null" >
+        TvLiveCutRate,
+      </if>
+      <if test="livecutseccount != null" >
+        LiveCutSecCount,
+      </if>
+      <if test="freezecount != null" >
+        FreezeCount,
+      </if>
+      <if test="vodfreezecount != null" >
+        VodFreezeCount,
+      </if>
+      <if test="backfreezecount != null" >
+        BackFreezeCount,
+      </if>
+      <if test="livefreezecount != null" >
+        LiveFreezeCount,
+      </if>
+      <if test="vodfreezesec != null" >
+        VodFreezeSec,
+      </if>
+      <if test="backfreezesec != null" >
+        BackFreezeSec,
+      </if>
+      <if test="livefreezesec != null" >
+        LiveFreezeSec,
+      </if>
+      <if test="netwoklostrate != null" >
+        NetwokLostRate,
+      </if>
+      <if test="networkavgsec != null" >
+        NetworkAvgSec,
+      </if>
+      <if test="totalusermoscount != null" >
+        TotalUserMosCount,
+      </if>
+      <if test="vodusermoscount != null" >
+        VodUserMosCount,
+      </if>
+      <if test="backusermoscount != null" >
+        BackUserMosCount,
+      </if>
+      <if test="liveusermoscount != null" >
+        LiveUserMosCount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="authrspsuccrate != null" >
+        #{authrspsuccrate,jdbcType=DOUBLE},
+      </if>
+      <if test="epgrspavgsec != null" >
+        #{epgrspavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="epgrsptimelyrate != null" >
+        #{epgrsptimelyrate,jdbcType=DOUBLE},
+      </if>
+      <if test="tvfreezeuserrate != null" >
+        #{tvfreezeuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="liveuserfreezesecrate != null" >
+        #{liveuserfreezesecrate,jdbcType=DOUBLE},
+      </if>
+      <if test="voduserfreezesecrate != null" >
+        #{voduserfreezesecrate,jdbcType=DOUBLE},
+      </if>
+      <if test="mdlostuserrate != null" >
+        #{mdlostuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="channelchgsecsuccrate != null" >
+        #{channelchgsecsuccrate,jdbcType=DOUBLE},
+      </if>
+      <if test="channelchgavgsec != null" >
+        #{channelchgavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="vodrsptimelyrate != null" >
+        #{vodrsptimelyrate,jdbcType=DOUBLE},
+      </if>
+      <if test="backrsptimelyrate != null" >
+        #{backrsptimelyrate,jdbcType=DOUBLE},
+      </if>
+      <if test="vodrspavgsec != null" >
+        #{vodrspavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="backrspavgsec != null" >
+        #{backrspavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="vodfviewlatenctime != null" >
+        #{vodfviewlatenctime,jdbcType=DOUBLE},
+      </if>
+      <if test="backfviewlatenctime != null" >
+        #{backfviewlatenctime,jdbcType=DOUBLE},
+      </if>
+      <if test="tvlivecutrate != null" >
+        #{tvlivecutrate,jdbcType=DOUBLE},
+      </if>
+      <if test="livecutseccount != null" >
+        #{livecutseccount,jdbcType=BIGINT},
+      </if>
+      <if test="freezecount != null" >
+        #{freezecount,jdbcType=BIGINT},
+      </if>
+      <if test="vodfreezecount != null" >
+        #{vodfreezecount,jdbcType=BIGINT},
+      </if>
+      <if test="backfreezecount != null" >
+        #{backfreezecount,jdbcType=BIGINT},
+      </if>
+      <if test="livefreezecount != null" >
+        #{livefreezecount,jdbcType=BIGINT},
+      </if>
+      <if test="vodfreezesec != null" >
+        #{vodfreezesec,jdbcType=DOUBLE},
+      </if>
+      <if test="backfreezesec != null" >
+        #{backfreezesec,jdbcType=DOUBLE},
+      </if>
+      <if test="livefreezesec != null" >
+        #{livefreezesec,jdbcType=DOUBLE},
+      </if>
+      <if test="netwoklostrate != null" >
+        #{netwoklostrate,jdbcType=DOUBLE},
+      </if>
+      <if test="networkavgsec != null" >
+        #{networkavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="totalusermoscount != null" >
+        #{totalusermoscount,jdbcType=DOUBLE},
+      </if>
+      <if test="vodusermoscount != null" >
+        #{vodusermoscount,jdbcType=DOUBLE},
+      </if>
+      <if test="backusermoscount != null" >
+        #{backusermoscount,jdbcType=DOUBLE},
+      </if>
+      <if test="liveusermoscount != null" >
+        #{liveusermoscount,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.szc.enterprise.web.model.ReportQualityExample" resultType="java.lang.Integer" >
+    select count(*) from report_quality
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_quality
+    <set >
+      <if test="record.timestamp != null" >
+        TimeStamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platform != null" >
+        Platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null" >
+        Location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provider != null" >
+        Provider = #{record.provider,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authrspsuccrate != null" >
+        AuthRspSuccRate = #{record.authrspsuccrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.epgrspavgsec != null" >
+        EpgRspAvgSec = #{record.epgrspavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.epgrsptimelyrate != null" >
+        EpgRspTimelyRate = #{record.epgrsptimelyrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tvfreezeuserrate != null" >
+        TvFreezeUserRate = #{record.tvfreezeuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.liveuserfreezesecrate != null" >
+        LiveUserFreezeSecRate = #{record.liveuserfreezesecrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.voduserfreezesecrate != null" >
+        VodUserFreezeSecRate = #{record.voduserfreezesecrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mdlostuserrate != null" >
+        MdLostUserRate = #{record.mdlostuserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.channelchgsecsuccrate != null" >
+        ChannelChgSecSuccRate = #{record.channelchgsecsuccrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.channelchgavgsec != null" >
+        ChannelChgAvgSec = #{record.channelchgavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vodrsptimelyrate != null" >
+        VodRspTimelyRate = #{record.vodrsptimelyrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.backrsptimelyrate != null" >
+        BackRspTimelyRate = #{record.backrsptimelyrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vodrspavgsec != null" >
+        VodRspAvgSec = #{record.vodrspavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.backrspavgsec != null" >
+        BackRspAvgSec = #{record.backrspavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vodfviewlatenctime != null" >
+        VodFviewLatencTime = #{record.vodfviewlatenctime,jdbcType=DOUBLE},
+      </if>
+      <if test="record.backfviewlatenctime != null" >
+        BackFviewLatencTime = #{record.backfviewlatenctime,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tvlivecutrate != null" >
+        TvLiveCutRate = #{record.tvlivecutrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.livecutseccount != null" >
+        LiveCutSecCount = #{record.livecutseccount,jdbcType=BIGINT},
+      </if>
+      <if test="record.freezecount != null" >
+        FreezeCount = #{record.freezecount,jdbcType=BIGINT},
+      </if>
+      <if test="record.vodfreezecount != null" >
+        VodFreezeCount = #{record.vodfreezecount,jdbcType=BIGINT},
+      </if>
+      <if test="record.backfreezecount != null" >
+        BackFreezeCount = #{record.backfreezecount,jdbcType=BIGINT},
+      </if>
+      <if test="record.livefreezecount != null" >
+        LiveFreezeCount = #{record.livefreezecount,jdbcType=BIGINT},
+      </if>
+      <if test="record.vodfreezesec != null" >
+        VodFreezeSec = #{record.vodfreezesec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.backfreezesec != null" >
+        BackFreezeSec = #{record.backfreezesec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.livefreezesec != null" >
+        LiveFreezeSec = #{record.livefreezesec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.netwoklostrate != null" >
+        NetwokLostRate = #{record.netwoklostrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.networkavgsec != null" >
+        NetworkAvgSec = #{record.networkavgsec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalusermoscount != null" >
+        TotalUserMosCount = #{record.totalusermoscount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vodusermoscount != null" >
+        VodUserMosCount = #{record.vodusermoscount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.backusermoscount != null" >
+        BackUserMosCount = #{record.backusermoscount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.liveusermoscount != null" >
+        LiveUserMosCount = #{record.liveusermoscount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_quality
+    set TimeStamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      Platform = #{record.platform,jdbcType=VARCHAR},
+      Location = #{record.location,jdbcType=VARCHAR},
+      Provider = #{record.provider,jdbcType=VARCHAR},
+      AuthRspSuccRate = #{record.authrspsuccrate,jdbcType=DOUBLE},
+      EpgRspAvgSec = #{record.epgrspavgsec,jdbcType=DOUBLE},
+      EpgRspTimelyRate = #{record.epgrsptimelyrate,jdbcType=DOUBLE},
+      TvFreezeUserRate = #{record.tvfreezeuserrate,jdbcType=DOUBLE},
+      LiveUserFreezeSecRate = #{record.liveuserfreezesecrate,jdbcType=DOUBLE},
+      VodUserFreezeSecRate = #{record.voduserfreezesecrate,jdbcType=DOUBLE},
+      MdLostUserRate = #{record.mdlostuserrate,jdbcType=DOUBLE},
+      ChannelChgSecSuccRate = #{record.channelchgsecsuccrate,jdbcType=DOUBLE},
+      ChannelChgAvgSec = #{record.channelchgavgsec,jdbcType=DOUBLE},
+      VodRspTimelyRate = #{record.vodrsptimelyrate,jdbcType=DOUBLE},
+      BackRspTimelyRate = #{record.backrsptimelyrate,jdbcType=DOUBLE},
+      VodRspAvgSec = #{record.vodrspavgsec,jdbcType=DOUBLE},
+      BackRspAvgSec = #{record.backrspavgsec,jdbcType=DOUBLE},
+      VodFviewLatencTime = #{record.vodfviewlatenctime,jdbcType=DOUBLE},
+      BackFviewLatencTime = #{record.backfviewlatenctime,jdbcType=DOUBLE},
+      TvLiveCutRate = #{record.tvlivecutrate,jdbcType=DOUBLE},
+      LiveCutSecCount = #{record.livecutseccount,jdbcType=BIGINT},
+      FreezeCount = #{record.freezecount,jdbcType=BIGINT},
+      VodFreezeCount = #{record.vodfreezecount,jdbcType=BIGINT},
+      BackFreezeCount = #{record.backfreezecount,jdbcType=BIGINT},
+      LiveFreezeCount = #{record.livefreezecount,jdbcType=BIGINT},
+      VodFreezeSec = #{record.vodfreezesec,jdbcType=DOUBLE},
+      BackFreezeSec = #{record.backfreezesec,jdbcType=DOUBLE},
+      LiveFreezeSec = #{record.livefreezesec,jdbcType=DOUBLE},
+      NetwokLostRate = #{record.netwoklostrate,jdbcType=DOUBLE},
+      NetworkAvgSec = #{record.networkavgsec,jdbcType=DOUBLE},
+      TotalUserMosCount = #{record.totalusermoscount,jdbcType=DOUBLE},
+      VodUserMosCount = #{record.vodusermoscount,jdbcType=DOUBLE},
+      BackUserMosCount = #{record.backusermoscount,jdbcType=DOUBLE},
+      LiveUserMosCount = #{record.liveusermoscount,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

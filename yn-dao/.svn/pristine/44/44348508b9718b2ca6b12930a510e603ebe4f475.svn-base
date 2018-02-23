@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.szc.enterprise.web.dao.dao.ReportExpertMapper" >
+  <resultMap id="BaseResultMap" type="com.szc.enterprise.web.model.ReportExpert" >
+    <result column="TimeStamp" property="timestamp" jdbcType="TIMESTAMP" />
+    <result column="Platform" property="platform" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="Provider" property="provider" jdbcType="VARCHAR" />
+    <result column="DeviceExpertCount" property="deviceexpertcount" jdbcType="BIGINT" />
+    <result column="NetworkExpertCount" property="networkexpertcount" jdbcType="BIGINT" />
+    <result column="EpgRspSlowCount" property="epgrspslowcount" jdbcType="BIGINT" />
+    <result column="VodSourceProblem" property="vodsourceproblem" jdbcType="VARCHAR" />
+    <result column="LiveAbnormalUserCount" property="liveabnormalusercount" jdbcType="BIGINT" />
+    <result column="LiveAbnormalUserRate" property="liveabnormaluserrate" jdbcType="DOUBLE" />
+    <result column="VodAbnormalUserCount" property="vodabnormalusercount" jdbcType="BIGINT" />
+    <result column="VodAbnormalUserRate" property="vodabnormaluserrate" jdbcType="DOUBLE" />
+    <result column="AutFailUserCount" property="autfailusercount" jdbcType="BIGINT" />
+    <result column="AutFailUserRate" property="autfailuserrate" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TimeStamp, Platform, Location, Provider, DeviceExpertCount, NetworkExpertCount, EpgRspSlowCount, 
+    VodSourceProblem, LiveAbnormalUserCount, LiveAbnormalUserRate, VodAbnormalUserCount, 
+    VodAbnormalUserRate, AutFailUserCount, AutFailUserRate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.szc.enterprise.web.model.ReportExpertExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from report_expert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.szc.enterprise.web.model.ReportExpertExample" >
+    delete from report_expert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.szc.enterprise.web.model.ReportExpert" >
+    insert into report_expert (TimeStamp, Platform, Location, 
+      Provider, DeviceExpertCount, NetworkExpertCount, 
+      EpgRspSlowCount, VodSourceProblem, LiveAbnormalUserCount, 
+      LiveAbnormalUserRate, VodAbnormalUserCount, 
+      VodAbnormalUserRate, AutFailUserCount, AutFailUserRate
+      )
+    values (#{timestamp,jdbcType=TIMESTAMP}, #{platform,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{provider,jdbcType=VARCHAR}, #{deviceexpertcount,jdbcType=BIGINT}, #{networkexpertcount,jdbcType=BIGINT}, 
+      #{epgrspslowcount,jdbcType=BIGINT}, #{vodsourceproblem,jdbcType=VARCHAR}, #{liveabnormalusercount,jdbcType=BIGINT}, 
+      #{liveabnormaluserrate,jdbcType=DOUBLE}, #{vodabnormalusercount,jdbcType=BIGINT}, 
+      #{vodabnormaluserrate,jdbcType=DOUBLE}, #{autfailusercount,jdbcType=BIGINT}, #{autfailuserrate,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.szc.enterprise.web.model.ReportExpert" >
+    insert into report_expert
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timestamp != null" >
+        TimeStamp,
+      </if>
+      <if test="platform != null" >
+        Platform,
+      </if>
+      <if test="location != null" >
+        Location,
+      </if>
+      <if test="provider != null" >
+        Provider,
+      </if>
+      <if test="deviceexpertcount != null" >
+        DeviceExpertCount,
+      </if>
+      <if test="networkexpertcount != null" >
+        NetworkExpertCount,
+      </if>
+      <if test="epgrspslowcount != null" >
+        EpgRspSlowCount,
+      </if>
+      <if test="vodsourceproblem != null" >
+        VodSourceProblem,
+      </if>
+      <if test="liveabnormalusercount != null" >
+        LiveAbnormalUserCount,
+      </if>
+      <if test="liveabnormaluserrate != null" >
+        LiveAbnormalUserRate,
+      </if>
+      <if test="vodabnormalusercount != null" >
+        VodAbnormalUserCount,
+      </if>
+      <if test="vodabnormaluserrate != null" >
+        VodAbnormalUserRate,
+      </if>
+      <if test="autfailusercount != null" >
+        AutFailUserCount,
+      </if>
+      <if test="autfailuserrate != null" >
+        AutFailUserRate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="provider != null" >
+        #{provider,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceexpertcount != null" >
+        #{deviceexpertcount,jdbcType=BIGINT},
+      </if>
+      <if test="networkexpertcount != null" >
+        #{networkexpertcount,jdbcType=BIGINT},
+      </if>
+      <if test="epgrspslowcount != null" >
+        #{epgrspslowcount,jdbcType=BIGINT},
+      </if>
+      <if test="vodsourceproblem != null" >
+        #{vodsourceproblem,jdbcType=VARCHAR},
+      </if>
+      <if test="liveabnormalusercount != null" >
+        #{liveabnormalusercount,jdbcType=BIGINT},
+      </if>
+      <if test="liveabnormaluserrate != null" >
+        #{liveabnormaluserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="vodabnormalusercount != null" >
+        #{vodabnormalusercount,jdbcType=BIGINT},
+      </if>
+      <if test="vodabnormaluserrate != null" >
+        #{vodabnormaluserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="autfailusercount != null" >
+        #{autfailusercount,jdbcType=BIGINT},
+      </if>
+      <if test="autfailuserrate != null" >
+        #{autfailuserrate,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.szc.enterprise.web.model.ReportExpertExample" resultType="java.lang.Integer" >
+    select count(*) from report_expert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update report_expert
+    <set >
+      <if test="record.timestamp != null" >
+        TimeStamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platform != null" >
+        Platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null" >
+        Location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provider != null" >
+        Provider = #{record.provider,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceexpertcount != null" >
+        DeviceExpertCount = #{record.deviceexpertcount,jdbcType=BIGINT},
+      </if>
+      <if test="record.networkexpertcount != null" >
+        NetworkExpertCount = #{record.networkexpertcount,jdbcType=BIGINT},
+      </if>
+      <if test="record.epgrspslowcount != null" >
+        EpgRspSlowCount = #{record.epgrspslowcount,jdbcType=BIGINT},
+      </if>
+      <if test="record.vodsourceproblem != null" >
+        VodSourceProblem = #{record.vodsourceproblem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liveabnormalusercount != null" >
+        LiveAbnormalUserCount = #{record.liveabnormalusercount,jdbcType=BIGINT},
+      </if>
+      <if test="record.liveabnormaluserrate != null" >
+        LiveAbnormalUserRate = #{record.liveabnormaluserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vodabnormalusercount != null" >
+        VodAbnormalUserCount = #{record.vodabnormalusercount,jdbcType=BIGINT},
+      </if>
+      <if test="record.vodabnormaluserrate != null" >
+        VodAbnormalUserRate = #{record.vodabnormaluserrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.autfailusercount != null" >
+        AutFailUserCount = #{record.autfailusercount,jdbcType=BIGINT},
+      </if>
+      <if test="record.autfailuserrate != null" >
+        AutFailUserRate = #{record.autfailuserrate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update report_expert
+    set TimeStamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      Platform = #{record.platform,jdbcType=VARCHAR},
+      Location = #{record.location,jdbcType=VARCHAR},
+      Provider = #{record.provider,jdbcType=VARCHAR},
+      DeviceExpertCount = #{record.deviceexpertcount,jdbcType=BIGINT},
+      NetworkExpertCount = #{record.networkexpertcount,jdbcType=BIGINT},
+      EpgRspSlowCount = #{record.epgrspslowcount,jdbcType=BIGINT},
+      VodSourceProblem = #{record.vodsourceproblem,jdbcType=VARCHAR},
+      LiveAbnormalUserCount = #{record.liveabnormalusercount,jdbcType=BIGINT},
+      LiveAbnormalUserRate = #{record.liveabnormaluserrate,jdbcType=DOUBLE},
+      VodAbnormalUserCount = #{record.vodabnormalusercount,jdbcType=BIGINT},
+      VodAbnormalUserRate = #{record.vodabnormaluserrate,jdbcType=DOUBLE},
+      AutFailUserCount = #{record.autfailusercount,jdbcType=BIGINT},
+      AutFailUserRate = #{record.autfailuserrate,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

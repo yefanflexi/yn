@@ -1,0 +1,4 @@
+com\szc\enterprise\web\dao\dao\ReportUserbehaviorMapper.class
+com\szc\enterprise\web\dao\dao\ReportExpertMapper.class
+com\szc\enterprise\web\dao\dao\ReportProbeperMapper.class
+com\szc\enterprise\web\dao\dao\ReportQualityMapper.class

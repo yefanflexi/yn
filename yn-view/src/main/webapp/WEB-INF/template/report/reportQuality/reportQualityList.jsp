@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -7,6 +8,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>云南报表</title>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/static/js/layui-v2.2.2/layui/css/layui.css"  />
     <%@ include file="/common/nocahe_tld_resource.jsp" %>
 </head>
 <!-- 绑定查询事件 -->
@@ -98,7 +100,7 @@
                 	</div>
                 </form>
                 
-               	<table lay-filter="parse-table-demo">
+               	<table class="layui-table" lay-filter="parse-table-demo">
                		<thead>
                 		<tr>
                             <th lay-data="{field:'timestamp', width:110}">日期</th>

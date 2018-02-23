@@ -10,9 +10,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <input type="hidden" id="baseurl" value="<%=path%>"></input>
 <!-- 当前jsessionid 图片上传js使用 -->
 <input type="hidden" value="<%= session.getId() %>" id="jsissionid"></input>
-<link rel="stylesheet" type="text/css" href="<%=path %>/static/js/layui-v2.2.2/layui/css/layui.css"  />
+<%-- <link rel="stylesheet" type="text/css" href="<%=path %>/static/js/layui-v2.2.2/layui/css/layui.css"  />--%>
 <!-- 基础样式 -->
-<link rel="stylesheet" type="text/css"  href="<%=path %>/static/js/layui-v1.0.9_rls/layui/css/layui.css"/>
+<%--<link rel="stylesheet" type="text/css"  href="<%=path %>/static/js/layui-v1.0.9_rls/layui/css/layui.css"/>--%>
 <link rel="stylesheet" type="text/css"  href="<%=path %>/static/css/style.fn.css"/>
 <link rel="stylesheet" type="text/css"  href="<%=path %>/static/css/alicon/iconfont.css"/>
 <!-- 文件上传样式 -->
